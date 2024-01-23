@@ -5,7 +5,7 @@ const readline = require('readline').createInterface({
   output: process.stdout
 });
 
-readline.question('Who are you?\n', input => {
+readline.question('Write something\n', input => {
   writeableStream.write(input + '\n');
 });
 
@@ -13,6 +13,12 @@ readline.on('line', (input) => {
   writeableStream.write(input + '\n');
 });
 
+readline.on('line', (input) => {
+  if (input === 'exit') {
+    console.log('Goodbye!');
+    process.exit(0);
+  }
+})
 
 readline.on('close', function() {
   console.log('Goodbye!');
